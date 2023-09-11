@@ -5,5 +5,6 @@ from . import views
 app_name = 'moviecharacters'
 
 urlpatterns = [
-    path('rickandmorty', views.rickAndMorty, name='rickandmorty'),
+    path('', views.movies, name='movies'),
+    path('<int:movie_id>/', views.characters, name='characters')
 ]

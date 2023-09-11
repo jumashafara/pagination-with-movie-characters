@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagination and Model Forms Practice</title>
+  </head>
+  <style>
+    table,
+    thead,
+    tr,
+    td {
+      border: 1px solid darkgray;
+    }
+
+    td {
+      padding: 5px;
+    }
+    label {
+      display: block;
+      margin-top: 5px;
+    }
+    input[type="submit"] {
+      margin-top: 5px;
+      display: block;
+    }
+  </style>
+  <body>
+    <h1>Pagination and Model Forms Practice</h1>
+    <ul>
+      <li><a href="{% url 'moviecharacters:movies' %}">Go to Movies</a></li>
+    </ul>
+    {% block content %} {% endblock %}
+  </body>
+</html>

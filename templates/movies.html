@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+<!-- Content -->
+{% block content %}
+<div>
+  {% if movies %}
+  <table>
+    <thead>
+      <td>Movie</td>
+      <td>Year</td>
+    </thead>
+    <tbody>
+      {% for movie in movies %}
+      <tr>
+        <td>
+          <a href="{% url 'moviecharacters:characters' movie.id %}"
+            >{{movie.title}}</a
+          >
+        </td>
+        <td>{{movie.year}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!-- Paginator -->
+  <div class="pagination">
+    <span class="step-links">
+      {% if movies.has_previous %}
+      <a href="?page=1">&laquo; First</a>
+      <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif %}
+      <span class="current"
+        >Page
+        <!-- Current Page -->
+        {{movies.number}} of
+        <!-- Total Pages -->
+        {{movies.paginator.num_pages}}
+      </span>
+
+      <!-- Next Page -->
+      {% if movies.has_next %}
+      <a href="?page={{movies.next_page_number}}">Next</a>
+      <a href="?page={{movies.paginator.num_pages}}">Last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+  <!-- End of Paginator -->
+  {% else %}
+  <h4>No movies found</h4>
+  {% endif %}
+</div>
+<div>
+  {% if form %}
+  <h2>Add a movie</h2>
+  <form action="{% url 'moviecharacters:movies' %}" method="post">
+    <!-- add token -->
+    {% csrf_token %}
+    <!-- Display form -->
+    {{form}}
+    <input type="submit" value="Add Movie" />
+    {% endif %}
+  </form>
+</div>
+{% endblock %}
